@@ -17,11 +17,15 @@ def scan_for_measurements(bluetooth):
 
             beacon_mac = binascii.hexlify(adv.mac).decode()
 
-            print(beacon_mac + ": " + encoded_measurements)
+            process_datapoint(beacon_mac, encoded_measurements)
 
 def is_ruuvi_weather_station(adv):
+    """Returns true if adv appears to be from a RuuviTag Weather Station"""
     return adv.adv_type == Bluetooth.CONN_ADV \
         and adv.addr_type == Bluetooth.RANDOM_ADDR \
         and adv.data[13:22] == b'\x03ruu.vi/#'
+
+def process_datapoint(beacon_mac, encoded_measurements):
+    print(beacon_mac + ": " + encoded_measurements)
 
 scan_for_measurements(Bluetooth())
