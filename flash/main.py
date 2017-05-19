@@ -8,10 +8,7 @@ def scan_for_measurements(bluetooth):
 
     while bluetooth.isscanning():
         adv = bluetooth.get_adv()
-        if adv \
-        and adv.adv_type == Bluetooth.CONN_ADV \
-        and adv.addr_type == Bluetooth.RANDOM_ADDR \
-        and adv.data[13:22] == b'\x03ruu.vi/#':
+        if adv and is_ruuvi_weather_station(adv):
             # URL-safe Base64 encoded measurements
             # See: https://github.com/ruuvi/ruuvi-sensor-protocols
             encoded_measurements = adv.data[22:] \
@@ -21,5 +18,10 @@ def scan_for_measurements(bluetooth):
             beacon_mac = binascii.hexlify(adv.mac).decode()
 
             print(beacon_mac + ": " + encoded_measurements)
+
+def is_ruuvi_weather_station(adv):
+    return adv.adv_type == Bluetooth.CONN_ADV \
+        and adv.addr_type == Bluetooth.RANDOM_ADDR \
+        and adv.data[13:22] == b'\x03ruu.vi/#'
 
 scan_for_measurements(Bluetooth())
