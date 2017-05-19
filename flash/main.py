@@ -2,9 +2,9 @@
 import binascii
 from network import Bluetooth
 
-def scan_for_measurements(bluetooth):
+def scan_for_measurements(bluetooth, duration_seconds):
     """Find RuuviTag Weather Station beacons, print measurements"""
-    bluetooth.start_scan(5)
+    bluetooth.start_scan(duration_seconds)
 
     while bluetooth.isscanning():
         adv = bluetooth.get_adv()
@@ -28,4 +28,4 @@ def is_ruuvi_weather_station(adv):
 def process_datapoint(beacon_mac, encoded_measurements):
     print(beacon_mac + ": " + encoded_measurements)
 
-scan_for_measurements(Bluetooth())
+scan_for_measurements(Bluetooth(), 5)
