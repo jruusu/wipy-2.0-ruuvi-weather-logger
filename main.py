@@ -1,4 +1,5 @@
 # main.py -- put your code here!
+import binascii
 from network import Bluetooth
 
 bluetooth = Bluetooth()
@@ -16,4 +17,7 @@ while bluetooth.isscanning():
         encoded_measurements = adv.data[22:] \
             .decode() \
             .rstrip('\0')
-        print(encoded_measurements)
+
+        beacon_mac = binascii.hexlify(adv.mac).decode()
+
+        print(beacon_mac + ": " + encoded_measurements)
