@@ -7,9 +7,14 @@
 ## TODO / ideas for future development
 * Connect logger to local wifi
 * NTP sync; https://docs.pycom.io/pycom_esp32/library/machine.RTC.html?highlight=ntp#machine.rtc.ntp_sync
+* Timestamp data points
 * Set up AWS infrastructure to receive the data
 * Implement data upload from logger to AWS
 * Continuous operation; sleep, repeat
+* Spool data on logger device
+* Batch upload
+* Persist spool in non-volatile memory
+* Turn off radio between runs to conserve battery
 
 ## Resources
 * [pycom esp32 Bluetooth tutorial](https://docs.pycom.io/pycom_esp32/pycom_esp32/tutorial/includes/bluetooth.html)
