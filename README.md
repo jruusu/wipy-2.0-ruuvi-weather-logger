@@ -5,7 +5,7 @@
 2) dump it in the cloud for further processing
 
 ## TODO / ideas for future development
-* Connect logger to local wifi
+* ~~Connect logger to local wifi~~
 * NTP sync; https://docs.pycom.io/pycom_esp32/library/machine.RTC.html?highlight=ntp#machine.rtc.ntp_sync
 * Timestamp data points
 * Set up AWS infrastructure to receive the data
