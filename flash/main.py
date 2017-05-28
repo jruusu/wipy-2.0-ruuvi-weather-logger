@@ -1,5 +1,6 @@
 # main.py -- put your code here!
 import binascii
+import utime
 from network import Bluetooth
 
 def scan_for_measurements(bluetooth, duration_seconds):
@@ -26,6 +27,9 @@ def is_ruuvi_weather_station(adv):
         and adv.data[13:22] == b'\x03ruu.vi/#'
 
 def process_datapoint(beacon_mac, encoded_measurements):
-    print(beacon_mac + ": " + encoded_measurements)
+    t = utime.localtime()
+    formatted_datetime = '{:04d}-{:02d}-{:02d}T{:02d}:{:02d}:{:02d}Z' \
+        .format(t[0], t[1], t[2], t[3], t[4], t[5])
+    print(str(formatted_datetime) + " " + beacon_mac + ": " + encoded_measurements)
 
 scan_for_measurements(Bluetooth(), 5)
