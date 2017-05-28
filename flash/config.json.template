@@ -2,5 +2,8 @@
   "wlan": {
     "ssid": "Your Network SSID",
     "password": "Your Network Password"
+  },
+  "ntp": {
+    "server": "pool.ntp.org"
   }
 }
