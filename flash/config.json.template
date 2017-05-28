@@ -1,0 +1,6 @@
+{
+  "wlan": {
+    "ssid": "Your Network SSID",
+    "password": "Your Network Password"
+  }
+}
